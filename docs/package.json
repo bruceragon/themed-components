@@ -1,4 +1,6 @@
 {
+    "name": "@themed-components/docs",
+    "version": "0.0.0",
     "private": true,
     "scripts": {
         "storybook": "start-storybook -s ./public -p 6006",
