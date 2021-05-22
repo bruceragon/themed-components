@@ -1,0 +1,44 @@
+{
+    "name": "@themed-components/primitives",
+    "version": "0.0.0",
+    "files": [
+      "dist/*.js",
+      "dist/*.js.map",
+      "dist/index.d.ts"
+    ],
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "license": "MIT",
+    "dependencies": {
+      "styled-system": "^5.1.5",
+      "@styled-system/css": "^5.1.5",
+      "@styled-system/props": "^5.1.5",
+      "react-portal": "^4.2.1",
+      "react-scripts": "4.0.3",
+      "react-transition-group": "^4.4.1"
+    },
+    "devDependencies": {
+      "@types/node": "^12.0.0",
+      "@types/react": "^17.0.3",
+      "@types/react-dom": "^17.0.3",
+      "@types/react-portal": "^4.0.2",
+      "@types/react-transition-group": "^4.4.1",
+      "@types/styled-components": "^5.1.9",
+      "@types/styled-system": "^5.1.11",
+      "@types/styled-system__css": "^5.0.15",
+      "csstype": "^3.0.8",
+      "react": "^17.0.2",
+      "react-dom": "^17.0.2",
+      "styled-components": "^5.2.3",
+      "styled-icons": "^10.33.0",
+      "typescript": "^4.2.4"
+    },
+    "peerDependencies": {
+      "react": "^17.0.2",
+      "react-dom": "^17.0.2",
+      "styled-components": "^5.2.3",
+      "styled-icons": "^10.33.0"
+    }
+  }
+  

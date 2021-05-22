@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import Code from './assets/code-brackets.svg';
+import Colors from './assets/colors.svg';
+import Comments from './assets/comments.svg';
+import Direction from './assets/direction.svg';
+import Flow from './assets/flow.svg';
+import Plugin from './assets/plugin.svg';
+import Repo from './assets/repo.svg';
+import StackAlt from './assets/stackalt.svg';
+
+<Meta title="Docs/About" />
+
+## About
+
+This library mainly relies on [styled-system](https://styled-system.com/) and [@styled-system/css](https://github.com/styled-system/styled-system/tree/master/packages/css).
+
+The idea is to provide a set of simple and composable components (primitives) based on styled-system's props and theme features, and more complex components built on top of them. 
+First I considered using [rebass](https://rebassjs.org/) components as primitives but it seems that its development has been abandoned.
+
+An alternative solution would be [theme-ui](https://theme-ui.com/home), a library developed by the author of styled-system and rebass.
+
+The main difference is that theme-ui relies on [Emotion](https://emotion.sh/docs/introduction) instead of [styled-components](https://styled-components.com/).
+As I understand it, the main reasons to this change were the absence of the shouldForwardProp option in SC at that time, and also to take advantage of the sx prop in Emotion. (More info can be found on [the author's blog](https://jxnblk.com/blog) and other discussions on Github).
+Today Styled Components has a shouldForwardProp option and a CSS prop (similar to the sx prop in Emotion).
+
+**this library is still a Work In Progress** and for now it lacks a few things (starting with thorough tests and probably performance optimizations).
+

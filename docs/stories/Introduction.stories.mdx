@@ -1,0 +1,130 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import Code from './assets/code-brackets.svg';
+import Colors from './assets/colors.svg';
+import Comments from './assets/comments.svg';
+import Direction from './assets/direction.svg';
+import Flow from './assets/flow.svg';
+import Plugin from './assets/plugin.svg';
+import Repo from './assets/repo.svg';
+import StackAlt from './assets/stackalt.svg';
+
+<Meta title="Docs/Getting started" />
+
+# themed-components
+**note**: this library is still under development (WIP)
+
+An extensible and themeable React component library based on [styled-system](https://styled-system.com/), [styled-components](https://styled-components.com/) and [styled-icons](https://styled-icons.js.org/).
+
+## Theming
+
+use the ThemeProvider component (a wrapper around styled-components' ThemeProvider) to apply a theme to all its descendants:
+```jsx
+<ThemeProvider theme={theme}>
+  {/* ...children */}
+</ThemeProvider>
+```
+the Theme object extends Styled System's Theme definition with: 
+- a "global" key for global styles applied to the body of the page
+- a "fontFaces" key that allows to define fontFaces in the theme (to avoid blinking fonts on re-renders add: "font-display: fallback" to your font face definition)
+
+it also applies a set of rules from Normalize CSS
+
+### Primitives
+
+The library is composed of a set of "primitive" components that corresponds to basic HTML elements (Link for anchors, Input for inputs etc...).
+
+These primitives are all Theme aware components, which styles can be defined in a theme file under the corresponding scale (see styled system's [theme specification](https://styled-system.com/theme-specification)).
+
+The scale for a primitive is the plural of the component's name (input > inputs, link > links, ...) 
+
+All the other components are built on top of primitives which allows them to also be theme aware and to accept styled system props. 
+
+### Styled System props
+
+See styled system's props [reference table](https://styled-system.com/table).
+
+All components accept a set of those props (as shown in the documentation page of each component).
+
+### using styled-components classes in theme file:
+
+As shown in the theme definition examples, you can use styled components classes to define variants like so:
+```ts
+// my-theme.ts
+import { Link  } from "@themed-components/core"
+// ...
+lists: {
+    primary: {
+        [Link + ":hover"]: {
+            color: "secondary"
+        }
+    }
+}
+```
+#### exceptions
+(as of now *icons* in *IconInput* and *containers* in *Select*)
+
+**note:** the following is most likely going to change in a future release to match the behaviour described above.
+
+Due to the way some components are implemented, for example with absolute positioning or with Portals, it's not always possible to do things like: 
+```ts
+// my-theme.ts
+import { Icon  } from "@themed-components/core"
+// The following won't work, because in the DOM tree Icon is not a descendant of Input
+inputs: {
+    primary: {
+        [Icon + ":hover"]: {
+            color: "secondary"
+        }
+    }
+}
+```
+Instead, a component that composes a primitive can override the default scale and also pass it the parent's variant as a prop.
+
+Consider the following example from the IconInput component (simplified for the example):
+```tsx
+function IconInput(props: IconInputProps) {
+  const {icon, variant, ...inputProps} = props;
+  // ...
+  return (
+    <CustomInput {...inputProps} ref={forwardedRef}>
+      {children}
+      {icon &&
+          <Icon
+              variant={inputScale + iconScale + variant}
+              iconType={icon}
+              ref={iconContainerRef}
+          />
+      }
+    </CustomInput>
+  )
+}
+```
+(nb: CustomInput is a component that composes the Input component, creates an absolute div on top 
+of it and injects the children in it. So in CSS terms Icon is not a child of Input, 
+as input elements cannot have children).
+
+
+As a result of passing the variant prop to the Icon component as: 
+```variant={inputScale + iconScale + variant}```
+the icon gets the following variant: "inputs.icons.primary"
+meaning that you can define it like so in the theme file:
+```ts
+// my-theme.ts
+inputs: {
+    primary: {
+      border: 1px solid;
+      borderColor: primary; // works if you defined a primary color in the colors' scale
+    }
+    icons: {
+      primary: {
+        color: secondary
+      }
+    }
+},
+// this is particularly useful if the primary icons outside of inputs have a CSS that doesn't match:
+icons: {
+  primary: {
+    color: primary
+  }
+}  
+```
