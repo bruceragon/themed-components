@@ -1,10 +1,10 @@
 {
     "private": true,
     "scripts": {
-        "storybook": "start-storybook -s ./public -p 6006",
-        "build:storybook": "build-storybook -s ./public -o ./storybook-build",
+        "storybook": "yarn run storybook --workspace=docs",
+        "build:storybook": "yarn run build-storybook --workspace=docs",
         "build:lib": "rollup -c",
-        "build:all": "yarn build-storybook && yarn build-lib"
+        "build:all": "yarn build:storybook && yarn build:lib"
     },
     "workspaces": [
         "packages/*",

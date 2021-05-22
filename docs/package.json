@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "storybook": "start-storybook -s ./public -p 6006",
-        "build-storybook": "build-storybook -s ./public -o ./storybook-build"
+        "build-storybook": "build-storybook -s ./public -o ./dist"
     },
     "dependencies": {
         "@themed-components/core": "^0.0.0"
