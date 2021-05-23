@@ -20,7 +20,7 @@ import {
     system
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-import { LibBaseProps, FlexProps, StyledComponentHelper } from "../types/common";
+import type { LibBaseProps, LibFlexProps, StyledComponentHelper } from "../themed-components";
 import * as CSS from "csstype";
 
 type SharedListProps =
@@ -29,7 +29,7 @@ type SharedListProps =
     TypographyProps &
     LayoutProps &
     BorderProps &
-    FlexProps &
+    LibFlexProps &
     LibBaseProps;
 type OrientationString = 'horizontal' | 'vertical' | 'x' | 'y';
 type Orientation = ResponsiveValue<OrientationString>;
@@ -123,7 +123,7 @@ function getListItemWidth(orientation?: Orientation) {
 const getWidthIfHorizontal = (o?: Orientation) => isHorizontal(o) ? "auto" : "100%";
 const isHorizontal = (orientation?: Orientation) => orientation === "horizontal" || orientation === "x";
 
-export default List;
+export { List };
 export {
     ListItem
 };

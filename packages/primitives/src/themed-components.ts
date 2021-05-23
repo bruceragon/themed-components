@@ -1,7 +1,9 @@
-import { get, Theme as SystemTheme, styleFn } from "styled-system";
+import { get, Theme as SystemTheme, styleFn, FlexProps as SSFlexProps, ResponsiveValue } from "styled-system";
 import _css, { SystemStyleObject } from "@styled-system/css";
 import { StyledConfig } from "styled-components";
 import { useState, useLayoutEffect } from "react";
+import type { Property, Globals } from "csstype";
+import type { StyledComponent, StyledComponentProps } from "styled-components";
 
 interface Theme extends Omit<SystemTheme, 'mediaQueries' | 'breakpoints'> {
     mediaQueries: string[];
@@ -10,8 +12,49 @@ interface Theme extends Omit<SystemTheme, 'mediaQueries' | 'breakpoints'> {
     fontFaces: string[];
 }
 
+type LibBaseProps = {
+    variant?: string;
+    scale?: string;
+    css?: SystemStyleObject;
+}
+
+// missing Flex Props from styled-system types
+type LibFlexProps = SSFlexProps & {
+    flexShrink?: ResponsiveValue<Globals | number>
+    flexGrow?: ResponsiveValue<Globals | number>
+    justifyContent?: ResponsiveValue<Property.JustifyContent>
+    alignItems?: ResponsiveValue<Property.AlignItems>
+    flexFlow?: ResponsiveValue<Property.FlexFlow>
+    flexWrap?: ResponsiveValue<Property.FlexWrap>
+    flexBasis?: ResponsiveValue<Property.FlexBasis>
+    flexDirection?: ResponsiveValue<Property.FlexDirection>
+    alignSelf?: ResponsiveValue<Property.AlignSelf>
+    justifySelf?: ResponsiveValue<Property.JustifySelf>
+};
+
+type CollidingProps<Props, E extends keyof JSX.IntrinsicElements> = keyof Props & keyof JSX.IntrinsicElements[E]
+
+// take all attributes from the intrinsic element
+// BUT omit the ones that are present in BaseProps
+// then merge them to the BaseProps
+type WithoutCollidingProps<BaseProps, E extends keyof JSX.IntrinsicElements> =
+    & Omit<JSX.IntrinsicElements[E], CollidingProps<BaseProps, E>>
+    & BaseProps
+
+interface StyledComponentHelper<Props extends object, E extends keyof JSX.IntrinsicElements & keyof HTMLElementTagNameMap> {
+    CollidingProps: CollidingProps<Props, E>,
+    WithoutCollidingProps: WithoutCollidingProps<Props, E>,
+    StyledComponentWrapper: StyledComponent<E, Theme, Props>,
+    FinalProps: StyledComponentProps<React.ComponentType<Props>, Theme, {}, any>
+}
+
 export type {
-    Theme
+    Theme,
+    LibBaseProps,
+    LibFlexProps,
+    CollidingProps,
+    WithoutCollidingProps,
+    StyledComponentHelper
 }
 
 interface Config {

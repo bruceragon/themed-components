@@ -13,7 +13,7 @@ import {
     BorderProps,
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-import { LibBaseProps, StyledComponentHelper } from "../types/common";
+import type { LibBaseProps, StyledComponentHelper } from "../themed-components";
 
 type BaseHeadingProps =
     SpaceProps &
@@ -53,7 +53,7 @@ const Heading = styled('h1')
     )}
 ` as HeadingComponent
 
-export default Heading;
+export { Heading };
 
 export type {
     HeadingProps

@@ -9,7 +9,7 @@ import {
     TypographyProps,
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-import { LibBaseProps, StyledComponentHelper } from "../types/common";
+import type { LibBaseProps, StyledComponentHelper } from "../themed-components";
 
 type BaseLinkProps =
     SpaceProps &
@@ -41,7 +41,7 @@ const Link = styled('a').withConfig<LinkStyledProps>({
     )}
 ` as LinkComponent;
 
-export default Link;
+export { Link };
 
 export type {
     LinkProps

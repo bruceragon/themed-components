@@ -247,7 +247,6 @@ const _PopoverWithTransition = React.forwardRef<HTMLDivElement, PopoverWithTrans
 
 const PopoverWithTransition = React.memo<React.FC<PopoverWithTransitionProps>>(_PopoverWithTransition);
 
-export default PopoverWithTransition;
 export {
     Popover,
     PopoverWithTransition

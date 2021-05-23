@@ -1,7 +1,7 @@
 import { ThemeProvider, createGlobalStyle } from "styled-components";
-import { Theme } from "./themed-components";
+import { Theme } from "../themed-components";
 import React from "react";
-import normalize from './css/normalize.module.css'
+import normalize from '../css/normalize.module.css'
 import css, { SystemStyleObject } from "@styled-system/css";
 import { styleFn } from "styled-system";
 

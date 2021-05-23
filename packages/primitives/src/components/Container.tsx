@@ -19,12 +19,7 @@ import {
     compose,
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-
-import {
-    LibBaseProps,
-    FlexProps,
-    StyledComponentHelper
-} from "../types/common";
+import type { LibBaseProps, LibFlexProps, StyledComponentHelper } from "../themed-components";
 
 type BaseContainerProps =
     LayoutProps &
@@ -48,7 +43,7 @@ const scale = "containers";
 const notForwarded: ContainerCollidingProps[] = [
     "color"
 ]
-export const Container = styled("div")
+const Container = styled("div")
     .withConfig<ContainerStyledProps>({
         shouldForwardProp: shouldNotForward<ContainerStyledProps>(notForwarded)
     }) <ContainerStyledProps>`
@@ -67,9 +62,7 @@ export const Container = styled("div")
     ${({ pointerEvents }) => pointerEvents ? `pointer-events: ${pointerEvents};` : ""}
 ` as ContainerComponent;
 
-export default Container;
-
-type BaseFlexProps = BaseContainerProps & FlexProps;
+type BaseFlexProps = BaseContainerProps & LibFlexProps;
 type FlexHelper = StyledComponentHelper<BaseFlexProps, "div">
 type StyledFlexProps = FlexHelper['WithoutCollidingProps']
 type FlexComponent = FlexHelper['StyledComponentWrapper']
@@ -84,6 +77,7 @@ const Flex = styled(FlexItem)`
 ` as FlexComponent
 
 export {
+    Container,
     Flex,
     FlexItem,
 }

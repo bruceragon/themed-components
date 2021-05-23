@@ -18,11 +18,7 @@ import {
     compose,
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-
-import {
-    LibBaseProps,
-    StyledComponentHelper
-} from "../types/common";
+import type { LibBaseProps, StyledComponentHelper } from "../themed-components";
 
 type BaseParagraphProps =
     LayoutProps &
@@ -44,7 +40,7 @@ const scale = "paragraphs";
 const notForwarded: ParagraphCollidingProps[] = [
     "color"
 ]
-export const Paragraph = styled("p")
+const Paragraph = styled("p")
     .withConfig<ParagraphStyledProps>({
         shouldForwardProp: shouldNotForward<ParagraphStyledProps>(notForwarded)
     }) <ParagraphStyledProps>`
@@ -62,7 +58,7 @@ export const Paragraph = styled("p")
     )}
 ` as ParagraphComponent;
 
-export default Paragraph;
+export { Paragraph };
 
 export type {
     ParagraphProps,

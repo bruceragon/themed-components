@@ -1,8 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "storybook": "yarn run storybook --workspace=docs",
-        "build:storybook": "yarn run build-storybook --workspace=docs",
+        "storybook": "yarn workspace docs storybook",
+        "build:storybook": "yarn workspace docs build-storybook",
         "build:lib": "rollup -c",
         "build:all": "yarn build:storybook && yarn build:lib"
     },
@@ -20,6 +20,7 @@
         "rollup-plugin-postcss": "^4.0.0",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-typescript2": "^0.30.0",
+        "tslib": "^2.2.0",
         "typescript": "^4.2.4"
     },
     "browserslist": {

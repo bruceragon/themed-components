@@ -7,7 +7,7 @@ export type CoverProps<P> = P & {
     forwardedRef?: MutableRefObject<unknown> | ((instance: unknown) => void)
 }
 
-export default function withCover<P, RefType = any>(
+export function withCover<P, RefType = any>(
     Component: React.ComponentType<P>,
 ) {
     const WithCover = ({

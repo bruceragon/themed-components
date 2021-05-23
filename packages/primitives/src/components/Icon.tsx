@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components"
 import { StyledIconProps, StyledIcon } from '@styled-icons/styled-icon'
-import { LibBaseProps } from "../types/common";
 import { defineWithTheme } from "../themed-components";
+import type { LibBaseProps } from "../themed-components";
 import { compose, layout, color, position, display, space, LayoutProps, ColorProps, PositionProps, DisplayProps, SpaceProps } from "styled-system";
 import { omit } from '@styled-system/props';
 
@@ -38,7 +38,7 @@ const Icon = styled(IconWrapper)(
     )
 ) 
 
-export default Icon;
+export { Icon };
 
 export type {
     IconProps

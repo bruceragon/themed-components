@@ -48,8 +48,6 @@ export function MultiSearchableList({ listProps, ...props }: MultiSearchableList
     )
 }
 
-export default SearchableList;
-
 export type {
     SearchableListProps,
     MultiSearchableListProps,

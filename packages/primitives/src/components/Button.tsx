@@ -13,7 +13,7 @@ import {
     BorderProps
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-import { LibBaseProps, StyledComponentHelper } from "../types/common";
+import type { LibBaseProps, StyledComponentHelper } from "../themed-components";
 
 type BaseButtonProps =
     SpaceProps &
@@ -67,7 +67,7 @@ const Button = styled('button')
     )}
 ` as ButtonComponent;
 
-export default Button;
+export { Button };
 
 export type {
     ButtonProps

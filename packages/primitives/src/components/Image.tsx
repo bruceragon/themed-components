@@ -11,7 +11,7 @@ import {
     SpaceProps,
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-import { LibBaseProps, StyledComponentHelper } from "../types/common";
+import type { LibBaseProps, StyledComponentHelper } from "../themed-components";
 
 type BaseImageProps =
     LayoutProps &
@@ -45,7 +45,7 @@ const Image = styled('img').withConfig<ImageStyledProps>({
     )}
 ` as ImageComponent;
 
-export default Image;
+export { Image };
 
 export type {
     ImageProps

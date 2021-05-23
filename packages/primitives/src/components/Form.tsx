@@ -18,11 +18,7 @@ import {
     compose,
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-import {
-    LibBaseProps,
-    FlexProps,
-    StyledComponentHelper,
-} from "../types/common"
+import type { LibBaseProps, LibFlexProps, StyledComponentHelper } from "../themed-components";
 
 type BaseFormProps = 
     SpaceProps &
@@ -32,7 +28,7 @@ type BaseFormProps =
     TypographyProps &
     LayoutProps &
     ColorProps &
-    FlexProps &
+    LibFlexProps &
     LibBaseProps & {
 }
 
@@ -63,10 +59,8 @@ const Form = styled("form").withConfig<FormStyledProps>({
     )}
 ` as FormComponent;
 
-export default Form;
-export {
-    Form
-}
+export { Form };
+
 export type {
     FormProps
 }

@@ -230,8 +230,6 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
     return React.createElement(BaseSelect, _props);
 }
 
-export default Select;
-
 export type {
     SelectProps,
     MultiSelectProps

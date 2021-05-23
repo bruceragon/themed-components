@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { system, ResponsiveValue, styleFn, } from "styled-system";
-import Container, {BaseContainerProps, ContainerComponent} from "./primitives/Container";
+import { Container, BaseContainerProps, ContainerComponent } from "./Container";
 import css from "@styled-system/css";
 import * as CSS from "csstype";
 
 import {
   StyledComponentHelper
-} from "./primitives/common.types";
+} from "../themed-components";
 
 const shouldNotForward = ["span", "cols"];
 
@@ -36,15 +36,15 @@ const gridDefaultProps = {
 };
 const Grid = styled(Container).withConfig<GridStyledProps>({
   shouldForwardProp: (prop) => !shouldNotForward.includes(prop)
-})<GridStyledProps>`
+}) <GridStyledProps>`
   ${system({
-    cols: {
-      property: ("grid-template-columns" as keyof CSS.Properties),
-      transform: (col: string | number) => `repeat(${col}, 1fr)`,
-    },
-  })}
+  cols: {
+    property: ("grid-template-columns" as keyof CSS.Properties),
+    transform: (col: string | number) => `repeat(${col}, 1fr)`,
+  },
+})}
   & > ${Row} {
-    ${({cols}) => css({gridColumn: Array.isArray(cols) ? cols.map(c => "span " + c) : "span " + cols}) as styleFn}
+    ${({ cols }) => css({ gridColumn: Array.isArray(cols) ? cols.map(c => "span " + c) : "span " + cols }) as styleFn}
   }
 ` as GridComponent;
 
@@ -62,7 +62,7 @@ type CellProps = CellHelper['FinalProps']
 
 const Cell = styled(Container).withConfig<CellStyledProps>({
   shouldForwardProp: (prop) => !shouldNotForward.includes(prop)
-})<CellStyledProps>`
+}) <CellStyledProps>`
   ${system({
   span: {
     property: ("grid-column" as keyof CSS.Properties),

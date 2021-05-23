@@ -31,7 +31,7 @@ function PopoverButton({
     )
 }
 
-export default PopoverButton;
+export { PopoverButton };
 export type {
     PopoverButtonProps
 };

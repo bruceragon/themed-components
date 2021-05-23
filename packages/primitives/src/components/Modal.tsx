@@ -1,12 +1,12 @@
 import { FlexProps, FlexItem } from "./Container";
 import { Portal, PortalProps } from "react-portal";
-import { useMemo, useCallback } from "react";
+import { useMemo } from "react";
 import React from "react";
 import { styleFn } from "styled-system";
 import styled from "styled-components";
 
 import { Transition } from "react-transition-group";
-import { TransitionProps, TransitionStatus, TransitionChildren } from "react-transition-group/Transition";
+import { TransitionProps, TransitionStatus } from "react-transition-group/Transition";
 
 type ModalProps = PortalProps & {
     containerProps?: FlexProps,
@@ -139,7 +139,6 @@ function _ModalWithTransition({
 
 const ModalWithTransition = React.memo<React.FC<ModalWithTransitionProps>>(_ModalWithTransition);
 
-export default ModalWithTransition;
 export {
     Modal,
     ModalWithTransition

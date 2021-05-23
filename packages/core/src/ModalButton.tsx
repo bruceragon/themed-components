@@ -34,7 +34,7 @@ function ModalButton({
     )
 }
 
-export default ModalButton;
+export { ModalButton };
 
 export type {
     ModalButtonProps

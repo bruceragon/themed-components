@@ -20,24 +20,27 @@ const getPackageConfig = (packageRoot) => ({
             sourcemap: true,
         },
     ],
+    cache: false,
     plugins: [
         peerDepsExternal(),
-        resolve(),
+        resolve({
+            rootDir: packageRoot
+        }),
         commonjs(),
         typescript({
-            include: [
-                packageRoot + 'src/**/*.ts+(|x)',
-                packageRoot + 'src/*.ts+(|x)'
-            ],
+            verbosity: 3,
             useTsconfigDeclarationDir: true,
             clean: true,
             tsconfigOverride: {
                 include: [
-                    packageRoot + 'src/**/*',
+                    packageRoot + 'src/**/*.ts+(|x)',
+                    packageRoot + 'src/*.ts+(|x)',
+                    packageRoot + 'src/*.d.ts',
                 ],
+                baseUrl: packageRoot,
                 compilerOptions: {
                     declaration: true,
-                    declarationDir: packageRoot + 'dist/types'
+                    declarationDir: packageRoot + 'dist'
                 }
             }
         }),
@@ -48,7 +51,7 @@ const getPackageConfig = (packageRoot) => ({
     ],
 })
 
-getPackageTypesConfig = (packageRoot) => ({
+const getPackageTypesConfig = (packageRoot) => ({
     input: packageRoot + 'dist/types/index.d.ts',
     output: [
         {
@@ -56,14 +59,22 @@ getPackageTypesConfig = (packageRoot) => ({
             format: 'es'
         }
     ],
+    cache: false,
     plugins: [
-        dts()
+        dts({
+            compilerOptions: {
+                isolatedModules: false
+            }
+        })
     ]
 })
 
+const primitivesDir = 'packages/primitives/';
+const coreDir = 'packages/core/';
+
 export default [
-    getPackageConfig('packages/core/'),
-    getPackageConfig('packages/primitives/'),
-    getPackageTypesConfig('packages/core/'),
-    getPackageTypesConfig('packages/primitives/'),
+    getPackageConfig(primitivesDir),
+    // getPackageTypesConfig(primitivesDir),
+    getPackageConfig(coreDir),
+    // getPackageTypesConfig(coreDir),
 ];

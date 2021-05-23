@@ -9,7 +9,7 @@ import {
     TypographyProps,
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-import { LibBaseProps, StyledComponentHelper } from "../types/common";
+import type { LibBaseProps, StyledComponentHelper } from "../themed-components";
 
 type BaseLabelProps =
     SpaceProps &
@@ -42,7 +42,7 @@ const Label = styled('label')
     )}
 ` as LabelComponent;
 
-export default Label;
+export { Label };
 
 export type {
     LabelProps

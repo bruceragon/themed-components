@@ -9,7 +9,7 @@ import {
     TypographyProps,
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-import { LibBaseProps, StyledComponentHelper } from "../types/common";
+import type { LibBaseProps, StyledComponentHelper } from "../themed-components";
 
 type BaseTextProps =
     SpaceProps &
@@ -42,7 +42,7 @@ const Text = styled('span')
     )}
 ` as TextComponent;
 
-export default Text;
+export { Text };
 
 export type {
     TextProps

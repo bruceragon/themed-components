@@ -9,9 +9,9 @@ export const parameters = {
 }
 
 import React from 'react';
-import ThemeProvider from '../src/components/ThemeProvider';
-import theme1 from '../src/theming/example2.theme';
-import theme2 from '../src/theming/bootstrap-ish.theme';
+import ThemeProvider from '@themed-components/core';
+import theme1 from '../theming/example2.theme';
+import theme2 from '../theming/bootstrap-ish.theme';
 
 const themes = [
   {}, 

@@ -12,7 +12,7 @@ export type HintProps<P> = P & {
 //     show: false,
 // }
 
-export default function withHint<P, RefType = any>(Component: React.ComponentType<P>) {
+export function withHint<P, RefType = any>(Component: React.ComponentType<P>) {
     const WithHint = ({
         _hint,
         _popoverProps,

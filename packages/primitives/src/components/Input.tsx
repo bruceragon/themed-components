@@ -15,14 +15,11 @@ import {
     TLengthStyledSystem
 } from "styled-system";
 import { defineWithTheme, shouldNotForward } from "../themed-components";
-import Container, { ContainerProps } from "./Container";
-import Icon, { IconProps } from "./Icon";
+import type { LibBaseProps, StyledComponentHelper } from "../themed-components";
+import { Container, ContainerProps } from "./Container";
+import { Icon, IconProps } from "./Icon";
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { StyledIcon } from '@styled-icons/styled-icon';
-import {
-    LibBaseProps,
-    StyledComponentHelper
-} from "../types/common";
 
 const scale = "inputs";
 
@@ -36,7 +33,7 @@ interface BaseInputProps extends
     cursor?: string
 }
 type InputHelper = StyledComponentHelper<BaseInputProps, "input">;
-type InputStyledProps = InputHelper["StyledComponentProps"];
+type InputStyledProps = InputHelper["WithoutCollidingProps"];
 type InputCollidingProps = InputHelper["CollidingProps"];
 
 const notForwarded: Array<InputCollidingProps> = [
@@ -110,7 +107,7 @@ const Input = styled("input").withConfig<InputStyledProps>({
 type InputProps = InputHelper["FinalProps"]
 // type InputProps = StyledComponentPropsWithRef<React.ComponentType<BaseInputProps>>
 
-export default Input;
+export { Input };
 
 type CustomInputProps = InputProps & {
     children?: React.ReactNode;
