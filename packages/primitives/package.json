@@ -4,18 +4,17 @@
     "files": [
       "dist/*.js",
       "dist/*.js.map",
-      "dist/index.d.ts"
+      "dist/types/index.d.ts"
     ],
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
-    "types": "dist/index.d.ts",
+    "types": "dist/types/index.d.ts",
     "license": "MIT",
     "dependencies": {
       "styled-system": "^5.1.5",
       "@styled-system/css": "^5.1.5",
       "@styled-system/props": "^5.1.5",
       "react-portal": "^4.2.1",
-      "react-scripts": "4.0.3",
       "react-transition-group": "^4.4.1"
     },
     "devDependencies": {

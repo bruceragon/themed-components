@@ -9,7 +9,7 @@ export const parameters = {
 }
 
 import React from 'react';
-import ThemeProvider from '@themed-components/core';
+import { ThemeProvider } from '@themed-components/core';
 import theme1 from '../theming/example2.theme';
 import theme2 from '../theming/bootstrap-ish.theme';
 

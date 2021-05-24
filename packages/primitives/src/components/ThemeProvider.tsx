@@ -1,4 +1,4 @@
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { ThemeProvider as StyledThemedProvider, createGlobalStyle } from "styled-components";
 import { Theme } from "../themed-components";
 import React from "react";
 import normalize from '../css/normalize.module.css'
@@ -25,14 +25,14 @@ export const GlobalStyle = createGlobalStyle<GlobalStyle>`
 function ThemeProviderWrapper({theme = {}, children}: ThemeProviderWrapperProps) {
     const {global, fontFaces, ..._theme} = theme;
     return (
-        <ThemeProvider theme={_theme}>
+        <StyledThemedProvider theme={_theme}>
             <GlobalStyle 
                 body={global}
                 fonts={fontFaces}
             />
             {children}
-        </ThemeProvider>
+        </StyledThemedProvider>
     )
 }
 
-export default React.memo(ThemeProviderWrapper);
+export const ThemeProvider = React.memo(ThemeProviderWrapper);

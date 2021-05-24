@@ -1,7 +1,7 @@
 import { Label } from "@themed-components/core";
 import { Input } from "@themed-components/core";
 import { Link } from "@themed-components/core";
-import { ListItem } from "../components/primitives/List";
+import { ListItem } from "@themed-components/core";
 import * as defaults from "./defaults";
 import { borders } from "./common";
 import { Container } from "@themed-components/core";

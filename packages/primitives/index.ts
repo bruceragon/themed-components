@@ -12,6 +12,7 @@ export * from "./src/components/Modal"
 export * from "./src/components/Paragraph"
 export * from "./src/components/Popover"
 export * from "./src/components/Text"
+export * from "./src/components/Grid"
 export * from "./src/components/ThemeProvider"
 
 export * from "./src/themed-components"
