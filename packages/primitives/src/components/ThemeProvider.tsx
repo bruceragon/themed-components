@@ -9,12 +9,12 @@ type ThemeProviderWrapperProps = {
     theme: Theme
 } & React.ComponentPropsWithRef<any>;
 
-type GlobalStyle = {
+type IGlobalStyle = {
     body: SystemStyleObject,
     fonts: string[]
 }
 
-export const GlobalStyle = createGlobalStyle<GlobalStyle>`
+export const GlobalStyle = createGlobalStyle<IGlobalStyle>`
     ${normalize}
     ${({fonts}) => fonts && fonts.join("\n")}
     body {

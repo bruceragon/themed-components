@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { MutableRefObject, useCallback, useLayoutEffect, useRef, useState } from "react";
 import { Popover, PopoverWithTransitionProps } from "@themed-components/primitives";
 
 export type CoverProps<P> = P & {
@@ -36,7 +36,7 @@ export function withCover<P, RefType = any>(
                     wrappedComponentRef.current.removeEventListener("mouseenter", mouseOver)
                 }
             }
-        }, [])
+        }, [mouseOver, wrappedComponentRef])
         useLayoutEffect(() => {
             if (overlayRef) {
                 overlayRef.addEventListener("mouseleave", mouseOut)
@@ -46,7 +46,7 @@ export function withCover<P, RefType = any>(
                     overlayRef.removeEventListener("mouseleave", mouseOut)
                 }
             }
-        }, [overlayRef])
+        }, [mouseOut, overlayRef])
         const overlayRefCallback = useCallback((node) => {
             if (node && node !== overlayRef) {
                 if (overlayRef) {
@@ -54,7 +54,7 @@ export function withCover<P, RefType = any>(
                 }
                 setOverlayRef(node)
             }
-        }, [])
+        }, [mouseOut, overlayRef])
         const refs = useCallback((r) => {
             wrappedComponentRef.current = r;
             if (forwardedRef) {

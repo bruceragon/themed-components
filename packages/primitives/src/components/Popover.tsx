@@ -118,7 +118,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(({
     const _containerProps = useMemo(() => ({
         ...defaultContainerProps,
         ...containerPropsWithoutStyle
-    }), [containerProps]);
+    }), [containerPropsWithoutStyle]);
     const [positionProps, setPositionProps] = useState<FlexProps>();
     useLayoutEffect(() => {
         const setPositions = () => {
@@ -134,7 +134,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(({
             window.removeEventListener("resize", setPositions);
             window.removeEventListener("scroll", setPositions);
         }
-    }, [attachTo.current, position]);
+    }, [attachTo.current, position, attachTo]);
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (
@@ -151,7 +151,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(({
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [attachTo.current])
+    }, [attachTo.current, attachTo, onOutsideClick])
     const handleContainerRef = useCallback((ref) => {
         _containerRef.current = ref;
         if (containerRef) {

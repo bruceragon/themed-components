@@ -176,7 +176,7 @@ export const IconInput = React.forwardRef<HTMLInputElement, IconInputProps>(({
             if (!_iconWidth)
                 setIconWidth(clientHeight)
         }
-    }, [inputProps, height, capitalizedPosition, iconContainerRef, iconContainerRef.current])
+    }, [inputProps, height, capitalizedPosition, iconContainerRef, iconContainerRef.current, _iconWidth, padding])
     const _inputProps = useMemo(() => ({
         ...inputProps,
         ...padding,

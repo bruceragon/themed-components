@@ -3,7 +3,6 @@ import { Story, Meta } from '@storybook/react';
 import {
   SearchableList,
   PopoverButton,
-  Flex,
   List,
   ListItem,
   Icon,

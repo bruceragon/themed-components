@@ -5,7 +5,6 @@ import {
   Heading,
   Icon,
   Container,
-  Flex,
   Image,
   withCover,
   ImageProps,

@@ -1,24 +1,11 @@
 import React from "react";
-import { Story, Meta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import {
-  Icon,
-  Label,
-  Input,
-  IconInput,
-  Text,
   Heading,
   Paragraph as P,
-  Button,
-  Container,
   Flex,
   FlexItem,
-  Grid,
-  Row,
-  LabelProps,
 } from "@themed-components/core"
-import { ReactLogo } from "@styled-icons/boxicons-logos/ReactLogo";
-import { Menu } from "@styled-icons/boxicons-regular/Menu";
-import { SearchOutline } from "@styled-icons/evaicons-outline/SearchOutline";
 import { Nav } from "./NavBar.stories";
 
 export default {

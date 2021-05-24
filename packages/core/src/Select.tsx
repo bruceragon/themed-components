@@ -42,9 +42,9 @@ const DefaultRow: React.ComponentType<ListChildComponentProps> = ({
         selectedItems,
         onSelect
     } = data;
-    const item = options[index];
+    const item = useMemo(() => options[index], [options, index]);
     const isSelected = useMemo(() =>
-        selectedItems.findIndex((i: Option) => i === item) > -1, [selectedItems, options])
+        selectedItems.findIndex((i: Option) => i === item) > -1, [selectedItems, item])
     const containerProps = {
         style: {
             display: "flex",
@@ -82,11 +82,11 @@ const BaseSelect = React.memo<BaseSelectProps>(({
     icon = ChevronDown,
     ...iconInputProps
 }) => {
-    const _options = useMemo(() => searchable ? new Fuse(options, { keys: ["label"] }) : options, [options]);
+    const _options = useMemo(() => searchable ? new Fuse(options, { keys: ["label"] }) : options, [options, searchable]);
     const filteredOptions = useMemo(() => !value || !searchable
         ? options
         : (_options as Fuse<Option>).search(value).map(o => o.item),
-        [value, searchable, options]);
+        [value, searchable, options, _options]);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [isOpen, setIsOpen] = useState(false);
     const _iconInputProps: IconInputProps = useMemo(() => ({
@@ -105,7 +105,7 @@ const BaseSelect = React.memo<BaseSelectProps>(({
             }
             if (!isOpen) setIsOpen(true)
         },
-    }), [iconInputProps]);
+    }), [iconInputProps, icon, isOpen, searchable, value]);
     const containerVariant = scale + ".containers." + iconInputProps.variant;
     const _popoverProps = useMemo<Partial<PopoverWithTransitionProps>>(() => ({
         containerProps: {
@@ -114,7 +114,7 @@ const BaseSelect = React.memo<BaseSelectProps>(({
             ...popoverProps?.containerProps
         },
         ...popoverProps
-    }), [popoverProps]);
+    }), [popoverProps, containerProps, containerVariant]);
     return (
         <>
             <IconInput
@@ -183,7 +183,7 @@ export const Select: React.FC<SelectProps> = ({
                 props.onChange(e);
             }
         }
-    }), [props, inputValue, selectedItem])
+    }), [props, inputValue, _selectedItem])
     return React.createElement(BaseSelect, _props);
 }
 

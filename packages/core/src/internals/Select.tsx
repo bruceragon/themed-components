@@ -44,12 +44,12 @@ const DefaultRow = ({ data, index, style, }: ListChildComponentProps) => {
         selectedItem,
         selectedItems,
     } = data;
-    const item = options[index];
+    const item = useMemo(() => options[index], [options, index]);
     const isSelected = useMemo(() =>
     (selectedItems
         ? selectedItems.findIndex((i: Option) => i === item) > -1
         : selectedItem === item
-    ), [selectedItems, selectedItem, options])
+    ), [selectedItems, selectedItem, item])
     const listItemProps = {
         style,
         item,
@@ -101,13 +101,13 @@ function Select({
         readOnly: !searchable,
         height,
         ...props
-    }), [searchable]);
+    }), [searchable, icon, iconPosition, cursor, height, props]);
     const _listProps: ListProps = useMemo(() => ({
         top: height,
         position: "absolute",
         ...listProps
     }), [height, listProps]);
-    const _options = useMemo(() => searchable ? new Fuse(options, { keys: ["label"] }) : options, [options]);
+    const _options = useMemo(() => searchable ? new Fuse(options, { keys: ["label"] }) : options, [options, searchable]);
     return (
         <Downshift
             onSelect={(item) => onItemSelect && onItemSelect(item)}
@@ -239,7 +239,7 @@ function MultiSelect({
     cursor = "pointer",
     ...props
 }: MultiSelectProps) {
-    const _options = useMemo(() => searchable ? new Fuse(options, { keys: ["label"] }) : options, [options]);
+    const _options = useMemo(() => searchable ? new Fuse(options, { keys: ["label"] }) : options, [options, searchable]);
     const [inputValue, setInputValue] = useState<string>(value)
     const {
         getSelectedItemProps,
@@ -251,7 +251,7 @@ function MultiSelect({
     const filteredOptions = useMemo(() => !inputValue || !searchable
         ? options
         : (_options as Fuse<Option>).search(inputValue).map(o => o.item),
-        [inputValue, searchable, options]);
+        [inputValue, searchable, options, _options]);
     const {
         isOpen,
         getLabelProps,
@@ -318,7 +318,7 @@ function MultiSelect({
         onClick: openMenu,
         height,
         ...props
-    }), [searchable]);
+    }), [searchable, icon, iconPosition, cursor, openMenu, height, props]);
     return (
         <>
             {label &&

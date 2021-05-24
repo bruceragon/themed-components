@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { MutableRefObject, useCallback, useLayoutEffect, useRef, useState } from "react";
 import { Popover, PopoverWithTransitionProps } from "@themed-components/primitives";
 
 export type HintProps<P> = P & {
@@ -7,10 +7,6 @@ export type HintProps<P> = P & {
     _popoverProps?: Partial<PopoverWithTransitionProps>
     forwardedRef?: MutableRefObject<unknown> | ((instance: unknown) => void)
 }
-
-// const defaultPopoverProps: Partial<PopoverWithTransitionProps> = {
-//     show: false,
-// }
 
 export function withHint<P, RefType = any>(Component: React.ComponentType<P>) {
     const WithHint = ({
@@ -21,15 +17,6 @@ export function withHint<P, RefType = any>(Component: React.ComponentType<P>) {
         ...ogProps
     }: HintProps<P>) => {
         const ref = useRef<HTMLElement | null>(null);
-        // const popoverProps = useMemo(() => ({
-        //     ...defaultPopoverProps,
-        //     ..._popoverProps
-        // }), [_popoverProps]);
-        // const {
-        //     show,
-        //     containerProps,
-        //     position = _popTo,
-        // } = popoverProps;
         const [_show, setShow] = useState(_popoverProps?.show ?? false)
         useLayoutEffect(() => {
             const mouseOver = () => {

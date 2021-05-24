@@ -1,6 +1,6 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import { Label, Input, Select, Form, Container, Flex, FlexProps, FormProps } from "@themed-components/core"
+import { Label, Input, Select, Form, Flex, FormProps } from "@themed-components/core"
 import { getMeta } from "../utils/meta"
 
 export default {

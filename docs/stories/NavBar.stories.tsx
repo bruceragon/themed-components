@@ -1,17 +1,9 @@
 import React from "react";
-import { Story, Meta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import {
-  Grid,
-  Row,
-  Container,
-  Flex,
-  FlexItem,
-  Button,
   PopoverButton,
   Link,
-  Text,
   Icon,
-  Input,
   IconInput,
   List,
   ListItem as Li
@@ -22,7 +14,6 @@ import { SearchOutline } from "@styled-icons/evaicons-outline/SearchOutline";
 
 export default {
   title: "Examples/NavBar",
-  // component: Label,
 } as Meta;
 
 export const Nav = () => (
