@@ -89,7 +89,6 @@ const Input = styled("input").withConfig<InputStyledProps>({
     &[type="search"]::-webkit-search-decoration {
         -webkit-appearance: none;
     }
-    font: inherit;
     box-sizing: border-box;
     ${props => ({
         cursor: props.cursor || "text"

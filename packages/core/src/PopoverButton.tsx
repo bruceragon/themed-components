@@ -21,7 +21,7 @@ function PopoverButton({
             <PopoverWithTransition
                 position={popTo}
                 show={show}
-                attachTo={buttonRef}
+                attachTo={buttonRef.current}
                 onOutsideClick={() => setShow(false)}
                 {...popoverProps}
             >

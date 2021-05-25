@@ -58,6 +58,7 @@ const getPackageConfig = (packageRoot, additionalConfig = {}) => ({
         terser(),
         postcss({
             modules: true,
+            inject: false
         }),
     ],
 })

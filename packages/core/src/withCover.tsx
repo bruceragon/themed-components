@@ -1,5 +1,5 @@
 import React, { MutableRefObject, useCallback, useLayoutEffect, useRef, useState } from "react";
-import { Popover, PopoverWithTransitionProps } from "@themed-components/primitives";
+import { PopoverWithTransition as Popover, PopoverWithTransitionProps } from "@themed-components/primitives";
 
 export type CoverProps<P> = P & {
     _cover: PopoverWithTransitionProps["children"]
@@ -71,7 +71,7 @@ export function withCover<P, RefType = any>(
                 <Popover
                     show={_show}
                     {..._popoverProps}
-                    attachTo={wrappedComponentRef}
+                    attachTo={wrappedComponentRef.current}
                     ref={overlayRefCallback}
                     position="cover"
                 >

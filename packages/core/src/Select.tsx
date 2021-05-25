@@ -5,7 +5,7 @@ import { StyledIcon } from '@styled-icons/styled-icon';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import Fuse from "fuse.js";
 import { IconInputProps, IconInput } from "@themed-components/primitives";
-import { Popover, PopoverWithTransitionProps } from "@themed-components/primitives";
+import { PopoverWithTransition as Popover, PopoverWithTransitionProps } from "@themed-components/primitives";
 import { Flex, FlexItem, FlexProps } from "@themed-components/primitives";
 import { List, ListItem } from "@themed-components/primitives";
 
@@ -123,7 +123,7 @@ const BaseSelect = React.memo<BaseSelectProps>(({
             />
             <Popover
                 onOutsideClick={() => setIsOpen(false)}
-                attachTo={inputRef}
+                attachTo={inputRef.current}
                 show={isOpen}
                 {..._popoverProps}
             >

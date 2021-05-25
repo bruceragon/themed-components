@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "storybook": "yarn workspace docs storybook",
+        "storybook": "rollup -c -w & yarn workspace docs storybook",
         "build:storybook": "yarn workspace docs build-storybook",
         "build:lib": "rollup -c",
         "build:all": "yarn build:storybook && yarn build:lib"

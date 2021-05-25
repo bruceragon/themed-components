@@ -32,7 +32,7 @@ const Template: Story<PopoverWithTransitionProps> = (args) => {
       <Popover
         {...args}
         show={show}
-        attachTo={buttonRef}
+        attachTo={buttonRef.current}
         onOutsideClick={() => setShow(false)}
       >
         <Container bg="white" variant="primary" border="1px solid black" width="400px" minHeight="100px" mb={1}>

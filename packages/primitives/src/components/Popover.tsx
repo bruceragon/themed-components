@@ -1,11 +1,11 @@
-import React, { MutableRefObject, RefObject, useMemo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { RefObject, useMemo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Portal } from 'react-portal';
 import { Flex, FlexProps } from './Container';
 import { Transition } from "react-transition-group";
 import { TransitionProps, TransitionStatus } from "react-transition-group/Transition";
 
 type PopoverProps = {
-    attachTo: MutableRefObject<HTMLElement> | RefObject<HTMLElement>
+    attachTo: HTMLElement | null
     containerRef?: RefObject<HTMLDivElement>
     children: React.ReactNode
     show?: boolean
@@ -20,8 +20,10 @@ const defaultContainerProps: FlexProps = {
     overflow: "visible",
 }
 
-function combinePositions(mainPosition: string, secondPosition: string, targetRect: DOMRect) {
-    const { height, width, x, y } = targetRect;
+function combinePositions(mainPosition: string, secondPosition: string, targetRect: DOMRect, attachTo: HTMLElement) {
+    const { x, y } = targetRect;
+    const width = attachTo.offsetWidth;
+    const height = attachTo.offsetHeight;
     const positions: Partial<FlexProps> = {};
     if (mainPosition === "top" || mainPosition === "bottom") {
         switch (secondPosition) {
@@ -62,9 +64,11 @@ function combinePositions(mainPosition: string, secondPosition: string, targetRe
     return positions;
 }
 
-function getContainerPositions({ position, attachTo }: Partial<PopoverProps>) {
-    const targetRect = attachTo!.current!.getBoundingClientRect();
-    const { height, width, x, y } = targetRect;
+function getContainerPositions({ position, attachTo }: { position: PopoverProps["position"], attachTo: HTMLElement }) {
+    const targetRect = attachTo.getBoundingClientRect();
+    const { x, y } = targetRect;
+    const width = attachTo.offsetWidth;
+    const height = attachTo.offsetHeight;
     let positions: Partial<FlexProps> = {};
     const arrayPosition = (position as string).split("-");
     const mainPosition = arrayPosition[0];
@@ -76,8 +80,8 @@ function getContainerPositions({ position, attachTo }: Partial<PopoverProps>) {
             return {
                 left: x,
                 top: y,
-                width: attachTo!.current!.clientWidth,
-                height: attachTo!.current!.clientHeight,
+                width,
+                height,
                 overflow: "hidden"
             }
         case "top":
@@ -95,7 +99,7 @@ function getContainerPositions({ position, attachTo }: Partial<PopoverProps>) {
     }
     positions = {
         ...positions,
-        ...combinePositions(mainPosition, secondPosition, targetRect)
+        ...combinePositions(mainPosition, secondPosition, targetRect, attachTo)
     }
     for (let key in positions) {
         if (typeof positions[key] === "number")
@@ -120,28 +124,30 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(({
         ...containerPropsWithoutStyle
     }), [containerPropsWithoutStyle]);
     const [positionProps, setPositionProps] = useState<FlexProps>();
-    useLayoutEffect(() => {
-        const setPositions = () => {
-            if (attachTo && attachTo.current) {
-                const positions = getContainerPositions({ position, attachTo });
-                setPositionProps(positions);
-            }
+    const setPositions = useCallback(() => {
+        if (attachTo) {
+            const positions = getContainerPositions({ position, attachTo });
+            setPositionProps(positions);
         }
+    }, [attachTo])
+    useLayoutEffect(() => {
         setPositions();
+    }, [setPositions, attachTo])
+    useEffect(() => {
         window.addEventListener("resize", setPositions);
         window.addEventListener("scroll", setPositions);
         return () => {
             window.removeEventListener("resize", setPositions);
             window.removeEventListener("scroll", setPositions);
         }
-    }, [attachTo.current, position, attachTo]);
+    }, [setPositions]);
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (
                 onOutsideClick &&
-                attachTo.current &&
+                attachTo &&
                 _containerRef.current &&
-                !attachTo.current.contains(event.target as Node) &&
+                !attachTo.contains(event.target as Node) &&
                 !_containerRef.current.contains(event.target as Node)
             ) {
                 onOutsideClick();
@@ -151,7 +157,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(({
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [attachTo.current, attachTo, onOutsideClick])
+    }, [attachTo, onOutsideClick])
     const handleContainerRef = useCallback((ref) => {
         _containerRef.current = ref;
         if (containerRef) {
@@ -165,7 +171,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(({
     return (
         <>
             {
-                show && (attachTo && attachTo.current) && children &&
+                show && attachTo && children &&
                 <Portal>
                     <Flex
                         ref={handleContainerRef}

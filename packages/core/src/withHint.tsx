@@ -1,5 +1,5 @@
 import React, { MutableRefObject, useCallback, useLayoutEffect, useRef, useState } from "react";
-import { Popover, PopoverWithTransitionProps } from "@themed-components/primitives";
+import { PopoverWithTransition as Popover, PopoverWithTransitionProps } from "@themed-components/primitives";
 
 export type HintProps<P> = P & {
     _hint: React.ReactNode
@@ -53,7 +53,7 @@ export function withHint<P, RefType = any>(Component: React.ComponentType<P>) {
                     position={_popTo}
                     show={_show}
                     {..._popoverProps}
-                    attachTo={ref}
+                    attachTo={ref.current}
                 >
                     {_hint}
                 </Popover>
