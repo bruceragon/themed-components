@@ -23,14 +23,13 @@ module.exports = {
             "styled-icons",
             "react-transition-group",
             "downshift",
-            "themed-components",
           ]
           const shouldKeepDeclaration = prop.declarations.find((declaration) => {
             return !declaration.fileName.includes("node_modules") || keepDeclarationsFrom.some(toKeep => declaration.fileName.includes(toKeep));
           });
           return Boolean(shouldKeepDeclaration);
         }
-        return true;
+        return false;
       },
       componentNameResolver: (exp, source) => exp.getName() === "StyledComponentClass" && getDefaultExportForFile(source),
       // skipChildrenPropWithoutDoc: false,
