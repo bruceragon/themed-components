@@ -9,7 +9,7 @@ export const SelectWrapper = (props: SelectProps) => (
 );
 
 export default {
-  title: 'Select/Select',
+  title: 'Inputs/Select',
   component: SelectWrapper,
   excludeStories: /.*Wrapper$/,
   ...getMeta<SelectProps>(SelectWrapper)

@@ -1,10 +1,11 @@
 {
     "private": true,
     "scripts": {
-        "storybook": "rollup -c -w & yarn workspace docs storybook",
+        "start:storybook": "yarn workspace docs storybook",
+        "start:dev": "rollup -c -w & yarn workspace docs storybook",
         "build:storybook": "yarn workspace docs build-storybook",
         "build:lib": "rollup -c",
-        "build:all": "yarn build:storybook && yarn build:lib"
+        "build:all": "yarn build:lib && yarn build:storybook"
     },
     "workspaces": [
         "packages/*",

@@ -5,7 +5,7 @@ import { ThemeContext } from 'styled-components';
 import { getMeta } from "../utils/meta"
 
 export default {
-  title: "Grid/Grid",
+  title: "Primitives/Grid",
   component: Grid,
   subcomponents: {
     Row,

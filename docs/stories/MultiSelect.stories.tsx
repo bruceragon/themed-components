@@ -9,7 +9,7 @@ export const MultiSelectWrapper = (props: MultiSelectProps) => (
 );
 
 export default {
-  title: 'MultiSelect/MultiSelect',
+  title: 'Inputs/MultiSelect',
   component: MultiSelectWrapper,
   excludeStories: /.*Wrapper$/,
   ...getMeta<MultiSelectProps>(MultiSelectWrapper)
