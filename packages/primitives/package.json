@@ -5,7 +5,8 @@
       "dist/*.js",
       "dist/*.js.map",
       "dist/types/index.d.ts",
-      "README.md"
+      "README.md",
+      "LICENSE"
     ],
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
