@@ -5,11 +5,12 @@ An extensible and themeable React component library based on [styled-system](htt
 [Documentation and examples](https://pilulerouge.dev/themed-components) (Storybook)
 
 ### Installation
+
 ```
-npm install @themed-components/core
+npm install styled-components styled-icons @themed-components/core
 ```
-or if you just want to use the primitives (included in core)
+or if you just want to use the primitives (included with core)
 ```
-npm install @themed-components/primitives
+npm install styled-components styled-icons @themed-components/primitives
 ```
 **note**: this library is still under development (more info in the [About](https://pilulerouge.dev/themed-components) section of the docs)

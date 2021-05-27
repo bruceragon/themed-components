@@ -1,10 +1,10 @@
 {
     "name": "@themed-components/primitives",
-    "version": "0.0.0",
+    "version": "0.0.2",
     "files": [
       "dist/*.js",
       "dist/*.js.map",
-      "dist/types/index.d.ts",
+      "dist/types/**/*",
       "README.md",
       "LICENSE"
     ],

@@ -51,7 +51,8 @@ const getPackageConfig = (packageRoot, additionalConfig = {}) => ({
                 baseUrl: packageRoot,
                 compilerOptions: {
                     declaration: true,
-                    declarationDir: packageRoot + 'dist/types'
+                    declarationDir: packageRoot + 'dist/types',
+                    sourceMap: true
                 }
             }
         }),
