@@ -30,7 +30,7 @@ const hintContainerProps: ContainerProps = {
   bg: "black"
 }
 const linkProps: HintProps<LinkProps> = {
-  href: "/?path=/story/primitives-link",
+  href: "?path=/story/primitives-link",
   _popTo: "bottom",
   _popoverProps: {
     timeout: 300,

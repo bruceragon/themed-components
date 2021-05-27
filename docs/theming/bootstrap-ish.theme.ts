@@ -25,7 +25,7 @@ const fontWeights = [
     weightStyleName: weight.toLowerCase().replace(" ", "-"),
     weightNumValue: (i + 1) * 100,
 }));
-const fontRepository = "/fonts";
+const fontRepository = "fonts";
 
 const getFontFaceString = ({
     name,

@@ -8,7 +8,7 @@ import {
   FlexItem,
   Heading, 
   Button, 
-  Modal, 
+  ModalWithTransition as Modal, 
   ModalWithTransitionProps  
 } from "@themed-components/core"
 import { X } from "styled-icons/feather";
@@ -43,7 +43,7 @@ const modalContent: (setShow: (show: boolean) => void) => ModalWithTransitionPro
       <Heading my={2} color="primary" textAlign="center">Heading</Heading>
       <Container px={3} py={2}>
         This is just an example of how the Modal Component can be used but if you just need a button that opens a modal
-        check the <Link href="/?path=/story/buttons-modalbutton--with-transition">ModalButton</Link> Component.
+        check the <Link href="?path=/story/buttons-modalbutton--with-transition">ModalButton</Link> Component.
         The ModalButton Component has a "modalProps" property that corresponds to the props of this Modal Component.
       </Container>
       <FlexItem alignSelf="flex-end" justifyContent="flex-end" px={3} py={2}>

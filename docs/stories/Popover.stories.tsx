@@ -36,7 +36,7 @@ const Template: Story<PopoverWithTransitionProps> = (args) => {
         onOutsideClick={() => setShow(false)}
       >
         <Container bg="white" variant="primary" border="1px solid black" width="400px" minHeight="100px" mb={1}>
-          This is basically how the <Link href="/?path=/story/buttons-popoverbutton--with-searchable-list-and-variants">PopoverButton</Link> is implemented :)
+          This is basically how the <Link href="?path=/story/buttons-popoverbutton--with-searchable-list-and-variants">PopoverButton</Link> is implemented :)
         </Container>
       </Popover>
     </>
